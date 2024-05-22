@@ -39,6 +39,10 @@ def new_member():
         return jsonify({"msg": "Body info is needed"}), 400
     if "first_name" not in body:
         return jsonify({"msg": "First Name is needed"}), 400
+    if "age" not in body:
+        return jsonify({"msg": "Age is needed"}), 400
+    if "lucky_numbers" not in body:
+        return jsonify({"msg": "Age is needed"}), 400
     print(body)
     new_member_data = {
         "id": body.get("id", jackson_family._generateId()),
@@ -48,10 +52,10 @@ def new_member():
         "lucky_numbers": body["lucky_numbers"] 
     }
     jackson_family.add_member(new_member_data)
-    return jsonify({"msg": "New member added"}), 201
+    return jsonify({"msg": "New member added"}), 200
 
-@app.route('/member/<int:id>', methods=['GET'])
-def get_member(id):
+#@app.route('/member/<int:id>', methods=['GET'])
+#def get_member(id):
     
 
 # this only runs if `$ python src/app.py` is executed
