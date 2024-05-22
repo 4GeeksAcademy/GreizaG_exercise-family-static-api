@@ -12,7 +12,7 @@ class FamilyStructure:
     def __init__(self, last_name):
         self.last_name = last_name
 
-        # example list of members
+        # initial list of members
         self._members = [{"id": self._generateId(),
                           "first_name": "John",
                           "last_name": self.last_name,
@@ -40,12 +40,17 @@ class FamilyStructure:
         self._members.append(member)
 
     def delete_member(self, id):
-        # fill this method and update the return
-        pass
+        for member in self._members:
+            if member["id"] == id:
+                self._members.remove(member)
+            return True
+        return False
 
     def get_member(self, id):
-        # fill this method and update the return
-        pass
+        for member in self._members:
+            if member["id"] == id:
+                return member
+        return None
 
     # this method is done, it returns a list with all the family members
     def get_all_members(self):
