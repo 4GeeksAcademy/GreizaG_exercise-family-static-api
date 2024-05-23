@@ -25,19 +25,6 @@ def handle_invalid_usage(error):
 def sitemap():
     return generate_sitemap(app)
 
-@app.route('/members', methods=['GET'])
-def get_members():
-    members = jackson_family.get_all_members()
-    return jsonify(members), 200
-
-@app.route('/member/<int:id>', methods=['GET'])
-def get_member(id):
-    member = jackson_family.get_member(id)
-    if member:
-        return jsonify(member), 200
-    else:
-        return jsonify({"msg": f'Member with id: {id} not found'}), 404
-
 @app.route('/member', methods=['POST'])
 def add_member():
     body = request.get_json(silent=True)
@@ -68,6 +55,19 @@ def delete_member(id):
         return jsonify({"done": True}), 200
     else:
         return jsonify({"done": False}), 404
+    
+@app.route('/member/<int:id>', methods=['GET'])
+def get_member(id):
+    member = jackson_family.get_member(id)
+    if member:
+        return jsonify(member), 200
+    else:
+        return jsonify({"msg": f'Member with id: {id} not found'}), 404
+    
+@app.route('/members', methods=['GET'])
+def get_members():
+    members = jackson_family.get_all_members()
+    return jsonify(members), 200
 
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
