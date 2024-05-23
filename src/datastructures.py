@@ -43,7 +43,7 @@ class FamilyStructure:
         for member in self._members:
             if member["id"] == id:
                 self._members.remove(member)
-            return self._members
+        return self._members
 
     def get_member(self, id):
         for member in self._members:
@@ -51,6 +51,5 @@ class FamilyStructure:
                 return member
         return None
 
-    # this method is done, it returns a list with all the family members
     def get_all_members(self):
         return self._members
