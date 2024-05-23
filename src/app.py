@@ -36,7 +36,7 @@ def get_member(id):
     if member:
         return jsonify(member), 200
     else:
-        return jsonify({"msg": f'Menber with id: {id} not found'}), 404
+        return jsonify({"msg": f'Member with id: {id} not found'}), 404
 
 @app.route('/member', methods=['POST'])
 def add_member():
@@ -58,11 +58,13 @@ def add_member():
         "lucky_numbers": body["lucky_numbers"] 
     }
     jackson_family.add_member(new_member_data)
+    print(jackson_family._members)
     return jsonify({"msg": "New member added"}), 200
 
 @app.route('/member/<int:id>', methods=['DELETE'])
 def delete_member(id):
     if jackson_family.delete_member(id):
+        print(jackson_family._members)
         return jsonify({"done": True}), 200
     else:
         return jsonify({"done": False}), 404

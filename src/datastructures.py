@@ -43,7 +43,7 @@ class FamilyStructure:
         for member in self._members:
             if member["id"] == id:
                 self._members.remove(member)
-            return True
+            return self._members
         return False
 
     def get_member(self, id):
